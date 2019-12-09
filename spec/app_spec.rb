@@ -5,6 +5,10 @@ describe "check_opening_time" do
     expect { check_opening_time(300) }.to raise_error ArgumentError
   end
 
+  it "should work with the current time" do
+    expect(["Open", "Closed"]).to include(check_opening_time(Time.now))
+  end
+
   it "shold be open on weekdays at 10am" do
     date = Time.new(2020, 1, 1, 10)
     expect(check_opening_time(date)).to eq("Open")
